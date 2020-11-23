@@ -1,0 +1,293 @@
+#!/bin/bash
+
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
+y=`tput setaf 3`
+magenta=`tput setaf 5`
+if [ "$1" == "daemon" ];
+	then
+		echo "$magenta"
+		echo ""
+		echo "@ Candy - App for your TeamSpeak"
+		echo "@ Author: Maciej \"Lukieer\" Skarbek"
+		echo "@ Version: 1.0"
+		echo ""
+		echo "$reset"
+	
+	
+		echo "You are selected: daemon"
+		if screen -ls | grep -q Candy_daemon;
+			then
+				screen -X -S Candy_daemon quit
+				echo "› SUCCESS $red Daemon stopped...$reset"
+			if screen -ls | grep -q Candy_Instance1;
+			then
+				screen -X -S Candy_Instance1 quit
+			fi
+					
+			if screen -ls | grep -q Candy_Instance2;
+				then
+					screen -X -S Candy_Instance2 quit
+			fi		
+					
+			if screen -ls | grep -q Candy_Instance3;
+				then		
+					screen -X -S Candy_Instance3 quit
+			fi
+			
+			if screen -ls | grep -q Candy_Instance4;
+				then		
+					screen -X -S Candy_Instance4 quit
+			fi
+			
+			if screen -ls | grep -q Candy_Instance5;
+				then
+					screen -X -S Candy_Instance5 quit
+			fi
+			if screen -ls | grep -q Candy_Instance6;
+				then
+					screen -X -S Candy_Instance5 quit
+			fi
+		else
+			cd inc/
+			screen -AdmS Candy_daemon php daemon.php
+			cd ..
+			echo "› SUCCESS $green Daemon starting...$reset"
+		fi
+elif [ "$1" == "start" ];
+	then
+	
+		echo "$magenta"
+		echo ""
+		echo "@ Candy - App for your TeamSpeak"
+		echo "@ Author: Maciej \"Lukieer\" Skarbek"
+		echo "@ Version: 1.0"
+		echo ""
+		echo "$reset"
+		
+		echo "You are selected: start"
+	
+		if screen -ls | grep -q Candy_Instance1;
+		then
+			echo "$red › ERROR $green Instance 1 is currently online $reset"
+		else
+			screen -AdmS Candy_Instance1 php core.php -i 1
+			echo "› SUCCESS $green Instance 1 starting...$reset"
+		fi
+		
+		
+		
+		
+		sleep 0.2
+		
+		if screen -ls | grep -q Candy_Instance2;
+		then
+			echo "$red › ERROR $green Instance 2 is currently online $reset"
+		else
+			screen -AdmS Candy_Instance2 php core.php -i 2
+			echo "› SUCCESS $green Instance 2 starting...$reset"
+		fi
+		
+		sleep 0.2
+		
+		if screen -ls | grep -q Candy_Instance3;
+		then
+			echo "$red › ERROR $green Instance 3 is currently online $reset"
+		else
+			screen -AdmS Candy_Instance3 php core.php -i 3
+			echo "› SUCCESS $green Instance 3 starting...$reset"
+		fi
+		
+		sleep 0.2
+		
+		if screen -ls | grep -q Candy_Instance4;
+		then
+			echo "$red › ERROR $green Instance 4 is currently online $reset"
+		else
+			screen -AdmS Candy_Instance4 php core.php -i 4
+			echo "› SUCCESS $green Instance 4 starting...$reset"
+		fi
+		
+		sleep 0.2
+		
+		if screen -ls | grep -q Candy_Instance5;
+		then
+			echo "$red › ERROR $green Instance 5 is currently online $reset"
+			echo ""
+		else
+			screen -AdmS Candy_Instance5 php core.php -i 5
+			echo "› SUCCESS $green Instance 5 starting...$reset"
+		fi
+		sleep 0.3
+		
+		if screen -ls | grep -q Candy_Instance6;
+		then
+			echo "$red › ERROR $green Instance 6 is currently online $reset"
+			echo ""
+		else
+			screen -AdmS Candy_Instance6 php core.php -i 6
+			echo "› SUCCESS $green Instance 6 starting...$reset"
+		fi
+		
+elif [ "$1" == "stop" ];
+	then
+		clear
+		
+		echo "$magenta"
+		echo ""
+		echo "@ Candy - App for your TeamSpeak"
+		echo "@ Author: Maciej \"Lukieer\" Skarbek"
+		echo "@ Version: 1.0"
+		echo ""
+		echo "$reset"
+		
+		echo "You are selected: stop"
+		
+		
+		if screen -ls | grep -q Candy_Instance1;
+			then
+				screen -X -S Candy_Instance1 quit
+				echo "› SUCCESS $green Instance 1 stopped...$reset"
+		else
+			echo "$red › ERROR $reset Instance 1 is currently offline $reset"
+		fi
+				
+		if screen -ls | grep -q Candy_Instance2;
+			then
+				screen -X -S Candy_Instance2 quit
+				echo "› SUCCESS $green Instance 2 stopped...$reset"		
+		else
+			echo "$red › ERROR $reset Instance 2 is currently offline $reset"
+				
+		fi		
+				
+		if screen -ls | grep -q Candy_Instance3;
+			then		
+				screen -X -S Candy_Instance3 quit
+				echo "› SUCCESS $green Instance 3 stopped...$reset"
+		else
+			echo "$red › ERROR $reset Instance 3 is currently offline $reset"
+		fi
+		
+		if screen -ls | grep -q Candy_Instance4;
+			then		
+				screen -X -S Candy_Instance4 quit
+				echo "› SUCCESS $green Instance 4 stopped...$reset"
+		else
+			echo "$red › ERROR $reset Instance 4 is currently offline $reset"
+		fi
+		
+		if screen -ls | grep -q Candy_Instance5;
+			then
+				screen -X -S Candy_Instance5 quit
+				echo "› SUCCESS $green Instance 5 stopped...$reset"
+		else
+			echo "$red › ERROR $reset Instance 5 is currently offline $reset"
+		fi
+		if screen -ls | grep -q Candy_Instance6;
+			then
+				screen -X -S Candy_Instance6 quit
+				echo "› SUCCESS $green Instance 6 stopped...$reset"
+		else
+			echo "$red › ERROR $reset Instance 6 is currently offline $reset"
+		fi
+		
+		
+elif [ "$1" == "restart" ];
+	then
+		echo "$magenta"
+		echo ""
+		echo "@ Candy - App for your TeamSpeak"
+		echo "@ Author: Maciej \"Lukieer\" Skarbek"
+		echo "@ Version: 1.0"
+		echo ""
+		echo "$reset"
+		
+		if screen -ls | grep -q Candy_Instance1;
+		then
+			screen -X -S Candy_Instance1 quit
+			echo "› SUCCESS $reset Instance 1 is going down $reset"
+			screen -AdmS Candy_Instance1 php core.php -i 1
+			echo "› SUCCESS $green Instance 2 starting...$reset"
+		else
+			screen -AdmS Candy_Instance1 php core.php -i 1
+			echo "› SUCCESS $green Instance 1 starting...$reset"
+		fi
+		
+		sleep 0.5
+		
+		if screen -ls | grep -q Candy_Instance2;
+		then
+			screen -X -S Candy_Instance2 quit
+			echo "› SUCCESS $reset Instance 2 is going down $reset"
+			screen -AdmS Candy_Instance2 php core.php -i 2
+			echo "› SUCCESS $green Instance 2 starting...$reset"
+		else
+			screen -AdmS Candy_Instance2 php core.php -i 2
+			echo "› SUCCESS $green Instance 2 starting...$reset"
+		fi
+		
+		sleep 0.5
+		
+				if screen -ls | grep -q Candy_Instance3;
+		then
+			screen -X -S Candy_Instance3 quit
+			echo "› SUCCESS $reset Instance 3 is going down $reset"
+			screen -AdmS Candy_Instance3 php core.php -i 3
+			echo "› SUCCESS $green Instance 3 starting...$reset"
+		else
+			screen -AdmS Candy_Instance3 php core.php -i 3
+			echo "› SUCCESS $green Instance 3 starting...$reset"
+		fi
+		
+		sleep 0.5
+		
+		if screen -ls | grep -q Candy_Instance4;
+		then
+			screen -X -S Candy_Instance4 quit
+			echo "› SUCCESS $reset Instance 4 is going down $reset"
+			screen -AdmS Candy_Instance4 php core.php -i 4
+			echo "› SUCCESS $green Instance 4 starting...$reset"
+		else
+			screen -AdmS Candy_Instance4 php core.php -i 4
+			echo "› SUCCESS $green Instance 4 starting...$reset"
+		fi
+		
+		sleep 0.5
+		
+		if screen -ls | grep -q Candy_Instance5;
+		then
+			screen -X -S Candy_Instance5 quit
+			echo "› SUCCESS $reset Instance 5 is going down $reset"
+			screen -AdmS Candy_Instance5 php core.php -i 5
+			echo "› SUCCESS $green Instance 5 starting...$reset"
+		else
+			screen -AdmS Candy_Instance5 php core.php -i 5
+			echo "› SUCCESS $green Instance 5 starting...$reset"
+		fi	
+		echo ""
+		sleep 3.5
+		
+		if screen -ls | grep -q Candy_Instance6;
+		then
+			screen -X -S Candy_Instance5 quit
+			echo "› SUCCESS $reset Instance 6 is going down $reset"
+			screen -AdmS Candy_Instance5 php core.php -i 6
+			echo "› SUCCESS $green Instance 6 starting...$reset"
+		else
+			screen -AdmS Candy_Instance5 php core.php -i 6
+			echo "› SUCCESS $green Instance 6 starting...$reset"
+		fi	
+		echo ""
+else
+	echo "$magenta"
+	echo ""
+	echo "@ Candy - App for your TeamSpeak"
+	echo "@ Author: Maciej \"Lukieer\" Skarbek"
+	echo "@ Version: 1.0"
+	echo ""
+	echo "$reset"	
+	echo "Correct usage: ./run <start|stop|restart|daemon>"
+	echo ""
+fi
